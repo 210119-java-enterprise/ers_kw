@@ -22,8 +22,8 @@ public class ConnectionFactory {
             InputStream propsInput = loader.getResourceAsStream("application.properties");
             if (propsInput == null) {
                 props.setProperty("url", System.getProperty("url"));
-                props.setProperty("username", System.getProperty("username"));
-                props.setProperty("password", System.getProperty("password"));
+                props.setProperty("admin-usr", System.getProperty("admin-usr"));
+                props.setProperty("admin-pw", System.getProperty("admin-pw"));
             } else {
                 props.load(propsInput);
             }
@@ -51,8 +51,8 @@ public class ConnectionFactory {
             // Force the JVM to load the PostGreSQL JDBC driver
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(props.getProperty("url"),
-                    props.getProperty("username"),
-                    props.getProperty("password"));
+                    props.getProperty("admin-usr"),
+                    props.getProperty("admin-pw"));
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
